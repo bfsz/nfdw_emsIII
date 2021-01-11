@@ -14,4 +14,29 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
 
+    //题库管理
+    $router->resource('TiKu/EmsQuestype', 'TiKu\EmsQuestypeController');
+    $router->resource('TiKu/EmsDeclaration', 'TiKu\EmsDeclarationController');
+    $router->resource('TiKu/EmsMajor', 'TiKu\EmsMajorController');
+    $router->resource('TiKu/EmsQuestion', 'TiKu\EmsQuestionController');
+    //考试管理
+    $router->resource('KaoShi/EmsBasic', 'KaoShi\EmsBasicController');
+    $router->resource('KaoShi/EmsSubject', 'KaoShi\EmsSubjectController');
+    $router->resource('KaoShi/EmsExam', 'KaoShi\EmsExamController');
+    $router->resource('KaoShi/AdminUser', 'KaoShi\AdminUserController');
+    $router->resource('KaoShi/EmsFile', 'KaoShi\EmsFileController');
+    $router->resource('KaoShi/EmsCategory', 'KaoShi\EmsCategoryController');
+
+    //考生考试
+    $router->resource('KaoShi/EmsExamsession', 'KaoShi\EmsExamsessionController');
+    $router->resource('KaoShi/EmsExamhistory', 'KaoShi\EmsExamhistoryController');
+
+
+    //API
+    Route::get('/api/questype', 'TikuController@questype');
+    Route::get('/api/declaration', 'TikuController@declaration');
+    Route::get('/api/major', 'TikuController@major');
+    Route::get('/api/questype1', 'TikuController@questype1');
+    Route::get('/api/declaration1', 'TikuController@declaration1');
+    Route::get('/api/major1', 'TikuController@major1');
 });
