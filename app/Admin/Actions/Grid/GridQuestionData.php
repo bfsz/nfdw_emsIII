@@ -54,6 +54,47 @@ HTML;
       </div>
       <div class="modal-body">
         {$form->render()}
+        <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">Excel 表头字段</button>
+          <div id="demo" class="collapse">
+                <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>字段</th>
+                        <th>解释</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>que_index</td>
+                        <td>题型ID</td>
+                      </tr>
+                      <tr>
+                        <td>que_select</td>
+                        <td>选项</td>
+                      </tr>
+                      <tr>
+                        <td>que_selectnum</td>
+                        <td>选项数量</td>
+                      </tr>
+                      <tr>
+                        <td>que_answer</td>
+                        <td>答案</td>
+                      </tr>
+                      <tr>
+                        <td>que_describe</td>
+                        <td>解析</td>
+                      </tr>
+                      <tr>
+                        <td>declaration_id</td>
+                        <td>种类</td>
+                      </tr>
+                      <tr>
+                        <td>major_id</td>
+                        <td>专业</td>
+                      </tr>
+                    </tbody>
+                </table>
+          </div>
       </div>
     </div>
   </div>

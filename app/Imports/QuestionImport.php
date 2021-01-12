@@ -28,4 +28,5 @@ class QuestionImport implements ToModel, WithHeadingRow
             'major_id' => $row['major_id'],
         ]);
     }
+
 }

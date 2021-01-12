@@ -19,12 +19,12 @@ Route::group([
     $router->resource('TiKu/EmsDeclaration', 'TiKu\EmsDeclarationController');
     $router->resource('TiKu/EmsMajor', 'TiKu\EmsMajorController');
     $router->resource('TiKu/EmsQuestion', 'TiKu\EmsQuestionController');
+    $router->resource('TiKu/EmsFile', 'TiKu\EmsFileController');
     //考试管理
     $router->resource('KaoShi/EmsBasic', 'KaoShi\EmsBasicController');
     $router->resource('KaoShi/EmsSubject', 'KaoShi\EmsSubjectController');
     $router->resource('KaoShi/EmsExam', 'KaoShi\EmsExamController');
     $router->resource('KaoShi/AdminUser', 'KaoShi\AdminUserController');
-    $router->resource('KaoShi/EmsFile', 'KaoShi\EmsFileController');
     $router->resource('KaoShi/EmsCategory', 'KaoShi\EmsCategoryController');
 
     //考生考试

@@ -42,7 +42,6 @@ HTML;
     {
         // 表单
         $form = new AdminUsersData();
-
         Admin::html(
             <<<HTML
 <div class="modal fade" id="{$id}">
@@ -54,6 +53,12 @@ HTML;
       </div>
       <div class="modal-body">
         {$form->render()}
+        <br>
+        <div class="alert alert-success">
+          <strong>登录用户名： zy@ + 身份证号后4位 + 4 位随机数</strong>
+          <br>
+          <strong>登录密码：  身份证后 6 位 + 手机号后 4 位</strong>
+        </div>
       </div>
     </div>
   </div>
