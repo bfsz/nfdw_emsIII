@@ -20,7 +20,7 @@ class EmsQuestypeController extends AdminController
         return Grid::make(new EmsQuestype(), function (Grid $grid) {
             $grid->id->sortable();
             $grid->type_name->editable(true);
-            $grid->sort->editable(true);
+//            $grid->sort->editable(true);
             $grid->type_choice->select([1 => '主观题', 2 => '客观题']);
             $grid->created_at;
             $grid->updated_at->sortable();
@@ -61,7 +61,7 @@ class EmsQuestypeController extends AdminController
         return Show::make($id, new EmsQuestype(), function (Show $show) {
             $show->field('id');
             $show->field('type_name');
-            $show->field('sort');
+//            $show->field('sort');
             $show->field('type_choice');
             $show->field('created_at');
             $show->field('updated_at');
@@ -78,8 +78,8 @@ class EmsQuestypeController extends AdminController
         return Form::make(new EmsQuestype(), function (Form $form) {
             $form->display('id');
             $form->text('type_name');
-            $form->text('sort');
-            $form->text('type_choice');
+//            $form->text('sort');
+            $form->select('type_choice')->options([1 => '主观题', 2 => '客观题']);
 
             $form->display('created_at');
             $form->display('updated_at');
