@@ -17,7 +17,7 @@ class TikuTable extends LazyRenderable
         $id = $this->id;
         return Grid::make(new EmsQuestion(), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('que_index')->label('题干')->limit(50);
+            $grid->column('que_index', '题干')->limit(50);
             $grid->rowSelector()->titleColumn('试题');
             $grid->quickSearch(['id', 'que_index']);
             $grid->paginate(20);
