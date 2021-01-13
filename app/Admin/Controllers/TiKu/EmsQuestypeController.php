@@ -18,16 +18,33 @@ class EmsQuestypeController extends AdminController
     protected function grid()
     {
         return Grid::make(new EmsQuestype(), function (Grid $grid) {
-            $grid->column('id')->sortable();
-            $grid->column('type_name');
-            $grid->column('sort');
-            $grid->column('type_choice');
-            $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
-        
+            $grid->id->sortable();
+            $grid->type_name->editable(true);
+            $grid->sort->editable(true);
+            $grid->type_choice->select([1 => '主观题', 2 => '客观题']);
+            $grid->created_at;
+            $grid->updated_at->sortable();
+
+            //显示边框
+//            $grid->withBorder();
+            // 设置弹窗宽高，默认值为 '700px', '670px'
+            $grid->enableDialogCreate();
+            $grid->setDialogFormDimensions('50%', '50%');
+            // 设置表单提示值
+            $grid->quickSearch(['type_name'])->placeholder('搜索...');
+            //导出
+            $grid->export()->filename('题库题型数据');
+            // 显示快捷编辑按钮
+            $grid->showQuickEditButton();
+            // 禁用编辑按钮
+            $grid->disableEditButton();
+
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
-        
+                // 更改为 panel 布局
+                $filter->panel();
+                // 注意切换为panel布局方式时需要重新调整表单字段的宽度
+                $filter->like('type_name')->width(3);
+                $filter->equal('type_choice')->select([1 => '主观题', 2 => '客观题'])->width(3);
             });
         });
     }
@@ -63,7 +80,7 @@ class EmsQuestypeController extends AdminController
             $form->text('type_name');
             $form->text('sort');
             $form->text('type_choice');
-        
+
             $form->display('created_at');
             $form->display('updated_at');
         });
