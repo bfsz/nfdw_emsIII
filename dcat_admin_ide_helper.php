@@ -28,9 +28,13 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection que_status
      * @property Grid\Column|Collection que_head_satuts
      * @property Grid\Column|Collection que_head_id
+     * @property Grid\Column|Collection basic_staus
+     * @property Grid\Column|Collection basic_users
      * @property Grid\Column|Collection subject
      * @property Grid\Column|Collection subject_dept
      * @property Grid\Column|Collection subject_desc
+     * @property Grid\Column|Collection exam_name
+     * @property Grid\Column|Collection exam_questions
      * @property Grid\Column|Collection username
      * @property Grid\Column|Collection password
      * @property Grid\Column|Collection name
@@ -61,9 +65,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection basic
      * @property Grid\Column|Collection basic_desc
      * @property Grid\Column|Collection basic_exam_id
-     * @property Grid\Column|Collection basic_staus
      * @property Grid\Column|Collection basic_subject_id
-     * @property Grid\Column|Collection basic_users
      * @property Grid\Column|Collection creat_by
      * @property Grid\Column|Collection last_by
      * @property Grid\Column|Collection ems_allscore
@@ -84,8 +86,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection ems_user_id
      * @property Grid\Column|Collection exam_jigescore
      * @property Grid\Column|Collection exam_major
-     * @property Grid\Column|Collection exam_name
-     * @property Grid\Column|Collection exam_questions
      * @property Grid\Column|Collection exam_score
      * @property Grid\Column|Collection exam_set
      * @property Grid\Column|Collection exam_set2
@@ -154,9 +154,13 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection que_status(string $label = null)
      * @method Grid\Column|Collection que_head_satuts(string $label = null)
      * @method Grid\Column|Collection que_head_id(string $label = null)
+     * @method Grid\Column|Collection basic_staus(string $label = null)
+     * @method Grid\Column|Collection basic_users(string $label = null)
      * @method Grid\Column|Collection subject(string $label = null)
      * @method Grid\Column|Collection subject_dept(string $label = null)
      * @method Grid\Column|Collection subject_desc(string $label = null)
+     * @method Grid\Column|Collection exam_name(string $label = null)
+     * @method Grid\Column|Collection exam_questions(string $label = null)
      * @method Grid\Column|Collection username(string $label = null)
      * @method Grid\Column|Collection password(string $label = null)
      * @method Grid\Column|Collection name(string $label = null)
@@ -187,9 +191,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection basic(string $label = null)
      * @method Grid\Column|Collection basic_desc(string $label = null)
      * @method Grid\Column|Collection basic_exam_id(string $label = null)
-     * @method Grid\Column|Collection basic_staus(string $label = null)
      * @method Grid\Column|Collection basic_subject_id(string $label = null)
-     * @method Grid\Column|Collection basic_users(string $label = null)
      * @method Grid\Column|Collection creat_by(string $label = null)
      * @method Grid\Column|Collection last_by(string $label = null)
      * @method Grid\Column|Collection ems_allscore(string $label = null)
@@ -210,8 +212,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection ems_user_id(string $label = null)
      * @method Grid\Column|Collection exam_jigescore(string $label = null)
      * @method Grid\Column|Collection exam_major(string $label = null)
-     * @method Grid\Column|Collection exam_name(string $label = null)
-     * @method Grid\Column|Collection exam_questions(string $label = null)
      * @method Grid\Column|Collection exam_score(string $label = null)
      * @method Grid\Column|Collection exam_set(string $label = null)
      * @method Grid\Column|Collection exam_set2(string $label = null)
@@ -285,9 +285,13 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection que_status
      * @property Show\Field|Collection que_head_satuts
      * @property Show\Field|Collection que_head_id
+     * @property Show\Field|Collection basic_staus
+     * @property Show\Field|Collection basic_users
      * @property Show\Field|Collection subject
      * @property Show\Field|Collection subject_dept
      * @property Show\Field|Collection subject_desc
+     * @property Show\Field|Collection exam_name
+     * @property Show\Field|Collection exam_questions
      * @property Show\Field|Collection username
      * @property Show\Field|Collection password
      * @property Show\Field|Collection name
@@ -318,9 +322,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection basic
      * @property Show\Field|Collection basic_desc
      * @property Show\Field|Collection basic_exam_id
-     * @property Show\Field|Collection basic_staus
      * @property Show\Field|Collection basic_subject_id
-     * @property Show\Field|Collection basic_users
      * @property Show\Field|Collection creat_by
      * @property Show\Field|Collection last_by
      * @property Show\Field|Collection ems_allscore
@@ -341,8 +343,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection ems_user_id
      * @property Show\Field|Collection exam_jigescore
      * @property Show\Field|Collection exam_major
-     * @property Show\Field|Collection exam_name
-     * @property Show\Field|Collection exam_questions
      * @property Show\Field|Collection exam_score
      * @property Show\Field|Collection exam_set
      * @property Show\Field|Collection exam_set2
@@ -411,9 +411,13 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection que_status(string $label = null)
      * @method Show\Field|Collection que_head_satuts(string $label = null)
      * @method Show\Field|Collection que_head_id(string $label = null)
+     * @method Show\Field|Collection basic_staus(string $label = null)
+     * @method Show\Field|Collection basic_users(string $label = null)
      * @method Show\Field|Collection subject(string $label = null)
      * @method Show\Field|Collection subject_dept(string $label = null)
      * @method Show\Field|Collection subject_desc(string $label = null)
+     * @method Show\Field|Collection exam_name(string $label = null)
+     * @method Show\Field|Collection exam_questions(string $label = null)
      * @method Show\Field|Collection username(string $label = null)
      * @method Show\Field|Collection password(string $label = null)
      * @method Show\Field|Collection name(string $label = null)
@@ -444,9 +448,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection basic(string $label = null)
      * @method Show\Field|Collection basic_desc(string $label = null)
      * @method Show\Field|Collection basic_exam_id(string $label = null)
-     * @method Show\Field|Collection basic_staus(string $label = null)
      * @method Show\Field|Collection basic_subject_id(string $label = null)
-     * @method Show\Field|Collection basic_users(string $label = null)
      * @method Show\Field|Collection creat_by(string $label = null)
      * @method Show\Field|Collection last_by(string $label = null)
      * @method Show\Field|Collection ems_allscore(string $label = null)
@@ -467,8 +469,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection ems_user_id(string $label = null)
      * @method Show\Field|Collection exam_jigescore(string $label = null)
      * @method Show\Field|Collection exam_major(string $label = null)
-     * @method Show\Field|Collection exam_name(string $label = null)
-     * @method Show\Field|Collection exam_questions(string $label = null)
      * @method Show\Field|Collection exam_score(string $label = null)
      * @method Show\Field|Collection exam_set(string $label = null)
      * @method Show\Field|Collection exam_set2(string $label = null)
