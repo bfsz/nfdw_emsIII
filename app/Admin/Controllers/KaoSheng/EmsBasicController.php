@@ -27,15 +27,13 @@ class EmsBasicController extends AdminController
      */
     protected function grid()
     {
-        Grid::resolving(function (Grid $grid) {
-            $grid->tableCollapse(false);
-        });
         return Grid::make($this->info(), function (Grid $grid) {
             $user_id = Admin::user()->id; //登录用户ID
             $grid->id->display(function ($value) {
                 return "<span class=\"badge badge-pill badge-success\">$value</span>";
             })->sortable();
             $grid->basic;
+            $grid->basic_desc->limit(50);
             $grid->basic_staus->using([1 => '开启', 0 => '关闭'])
                 ->dot(
                     [
@@ -43,7 +41,10 @@ class EmsBasicController extends AdminController
                         0 => 'danger',
                     ]
                 );
-            $grid->column('emsExam.session_exam_url', '进入考试')->link();
+//            $grid->column('emsExam.session_exam_url', '进入考试')->link();
+            $grid->column('emsExam.session_exam_url', '进入考试')->display(function ($value) {
+                return '<a href="' . $value . '" target="_blank">进入考试</a>';
+            });
             $grid->column('emsExam.session_sum_time', '考试时间')->display(function ($value) {
                 return "<span class=\"badge badge-pill badge-danger\">$value / 分钟</span>";
             });
@@ -99,13 +100,13 @@ class EmsBasicController extends AdminController
             for ($i = 0, $iMax = count($data); $i < $iMax; $i++) {
                 $basic_id = $data[$i]->session_basic_id; //考场ID
                 array_push($is_users, $basic_id);
-                }
+            }
             //如果没有当前用户 id 则为 null
             if (!$is_users) {
                 $is_user = null;
             }
             // 模型一对一关联
-            $datas = EmsBasic::with(['emsSubject', 'emsExam'])->whereIn('id', $is_users);
+            $datas = EmsBasic::with(['emsSubject', 'emsExam'])->where('basic_staus', 1)->whereIn('id', $is_users);
         } else {
             $datas = EmsBasic::with(['emsSubject', 'emsExam'])->where('id', 0); //当临时表单状态为1 查询为空
         }

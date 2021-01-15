@@ -120,11 +120,11 @@ class EmsBasicController extends AdminController
             $form->display('created_at')->display(false);
             $form->display('updated_at')->display(false);
         })->saved(function (Form $form) {
-            // 获取表单主键ID 考场ID
-            $basic_id = $form->getKey();
             /* 生成考试记录*/
             //1、考场ID、试卷ID
             try {
+                // 获取表单主键ID 考场ID
+                $basic_id = $form->getKey();
                 $basic = \App\Models\KaoShi\EmsBasic::where('id', $basic_id)->select('basic_subject_id', 'basic_exam_id')->get(); //申报科目ID
                 $subject_id = $basic[0]->basic_subject_id; // 申报科目ID
                 $exam_id = $basic[0]->basic_exam_id; // 试卷ID
@@ -156,7 +156,7 @@ class EmsBasicController extends AdminController
                             $EmsExamsession->session_sum_time = $all_time;
                             $EmsExamsession->session_exam_question = $exam_questions;
                             $EmsExamsession->session_allscore = $exam_score;
-                            $EmsExamsession->session_exam_url = admin_url('KaoSheng/EmsKaoShi') . '/' . $basic_id;
+                            $EmsExamsession->session_exam_url = admin_url('KaoSheng/EmsKaoShi') . '/' . base64_encode($basic_id) . '/ExamPage';
                             $EmsExamsession->save();
                         } else {
                             EmsExamsession::where('session_user_id', (int)$users_datas_json[$i])

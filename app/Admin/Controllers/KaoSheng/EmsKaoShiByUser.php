@@ -3,8 +3,6 @@
 
 namespace App\Admin\Controllers\KaoSheng;
 
-
-use App\Admin\Controllers\KaoShi\EmsExamByUserPaper;
 use App\Http\Controllers\Controller;
 use Dcat\Admin\Layout\Content;
 

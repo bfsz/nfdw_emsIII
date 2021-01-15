@@ -7,9 +7,9 @@ use Dcat\Admin\Admin;
 Admin::routes();
 
 Route::group([
-    'prefix'        => config('admin.route.prefix'),
-    'namespace'     => config('admin.route.namespace'),
-    'middleware'    => config('admin.route.middleware'),
+    'prefix' => config('admin.route.prefix'),
+    'namespace' => config('admin.route.namespace'),
+    'middleware' => config('admin.route.middleware'),
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
@@ -34,7 +34,7 @@ Route::group([
     $router->get('KaoSheng/examFun', 'KaoSheng\EmsKaoShiSubmit@examFun');
     $router->resource('KaoSheng/EmsBasic', 'KaoSheng\EmsBasicController');
     $router->resource('KaoSheng/EmsHistory', 'KaoSheng\EmsHistoryController');
-    $router->resource('KaoSheng/EmsKaoShi/{id}', 'KaoSheng\EmsKaoShiByUser');
+    $router->resource('KaoSheng/EmsKaoShi/{id}/ExamPage', 'KaoSheng\EmsKaoShiByUser');
 
     //API
     Route::get('/api/questype', 'TikuController@questype');

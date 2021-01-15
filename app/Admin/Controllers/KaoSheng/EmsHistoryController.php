@@ -28,9 +28,6 @@ class EmsHistoryController extends AdminController
      */
     protected function grid()
     {
-        Grid::resolving(function (Grid $grid) {
-            $grid->tableCollapse(false);
-        });
         return Grid::make($this->info(), function (Grid $grid) {
             $grid->id->display(function ($value) {
                 return "<span class=\"badge badge-pill badge-success\">$value</span>";

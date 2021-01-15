@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Admin\Controllers\KaoShi;
+namespace App\Admin\Controllers\KaoSheng;
 
 use App\Models\KaoShi\EmsExamsession;
 use Dcat\Admin\Admin;
@@ -35,9 +35,12 @@ JS;
         Admin::script($this->script());
         // 获取url路径后面的考场ID
         $url = URL::full();
-        $url_a = strrchr($url, '/');
+        $url_a = strstr($url, 'EmsKaoShi/');
         $basic_id = substr($url_a, strpos($url_a, '/') + 1);
-        //判断当前登录用户 通过ID 获取自己的考生临时记录
+        $basic_id = substr($basic_id, 0, strrpos($basic_id, '/'));
+        $basic_id = base64_decode($basic_id); //解密
+
+        //判断当前登录用户 通过ID 获取自考生临时记录
         $user_id = Admin::user()->id;
         $user_name = Admin::user()->name;
         $examDatas = EmsExamsession::with(['emsBasic', 'emsExam', 'emsSubject'])->where('session_user_id', $user_id)->where('session_basic_id', $basic_id)->get();
