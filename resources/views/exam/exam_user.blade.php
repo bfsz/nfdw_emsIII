@@ -8,6 +8,11 @@
         background-color: rgba(209, 4, 0, 0.53);
         color: #ffffff;
     }
+
+    .datika {
+        position: fixed;
+        z-index: 10;
+    }
 </style>
 <div class="container-fluid">
     <div class="row">
@@ -222,7 +227,7 @@
 
         {{--答题卡导航栏--}}
         <div class="col-3">
-            <div class="card position-fixed"
+            <div class="card datika"
                  style="margin-right: 10px;margin-top:10px;margin-bottom: 10px;height: 100%;">
                 <div class="col-12 card-body">
                     <h1>

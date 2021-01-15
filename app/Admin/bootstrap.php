@@ -1,10 +1,7 @@
 <?php
 
 use Dcat\Admin\Admin;
-use Dcat\Admin\Grid;
-use Dcat\Admin\Form;
-use Dcat\Admin\Grid\Filter;
-use Dcat\Admin\Show;
+use Dcat\Admin\Layout\Navbar;
 
 /**
  * Dcat-admin - admin builder based on Laravel.
@@ -24,3 +21,14 @@ use Dcat\Admin\Show;
  * Admin::js('/packages/prettydocs/js/main.js');
  *
  */
+Admin::navbar(function (Navbar $navbar) {
+
+    $navbar->right(view('navbar.navbar'));
+
+    $navbar->right(view('navbar.mean'));
+
+});
+admin_inject_section(Admin::SECTION['NAVBAR_USER_PANEL'], function () {
+    return view('navbar.navbar-user-panel', ['user' => Admin::user()]);
+});
+
