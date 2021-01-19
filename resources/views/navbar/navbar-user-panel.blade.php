@@ -14,6 +14,7 @@
     .round:active {
         transform: scale(1.1);
     }
+
 </style>
 @if($user)
     <li class="dropdown dropdown-user nav-item">

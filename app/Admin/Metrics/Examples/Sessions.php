@@ -2,6 +2,7 @@
 
 namespace App\Admin\Metrics\Examples;
 
+use App\Models\KaoShi\EmsExamhistory;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Widgets\Metrics\Bar;
 use Illuminate\Http\Request;
@@ -17,19 +18,14 @@ class Sessions extends Bar
 
         $color = Admin::color();
 
-        $dark35 = $color->dark35();
+        $dark35 = $color->blue();
 
         // 卡片内容宽度
-        $this->contentWidth(5, 7);
+        $this->contentWidth(4, 6);
         // 标题
-        $this->title('Avg Sessions');
+        $this->title('考试情况');
         // 设置下拉选项
-        $this->dropdown([
-            '7' => 'Last 7 Days',
-            '28' => 'Last 28 Days',
-            '30' => 'Last Month',
-            '365' => 'Last Year',
-        ]);
+        $this->subTitle('最新统计');
         // 设置图表颜色
         $this->chartColors([
             $dark35,
@@ -50,17 +46,34 @@ class Sessions extends Bar
      */
     public function handle(Request $request)
     {
+        $count = EmsExamhistory::all()->count();
+        $yes_count = EmsExamhistory::where('ems_ispass', 1)->count();
+        if ($yes_count) {
+            $value = ($yes_count / $count) * 100;
+        } else {
+            $value = 0;
+        }
+
+        $data = EmsExamhistory::select('ems_score')->orderBy('ems_decidetime', 'desc')->limit(10)->get();
+        $datas = [];
+        if ($data) {
+            foreach (json_decode($data) as $t) {
+                array_push($datas, $t->ems_score);
+            }
+        } else {
+            $count = 0;
+        }
+
         switch ($request->get('option')) {
             case '7':
             default:
                 // 卡片内容
-                $this->withContent('2.7k', '+5.2%');
-
+                $this->withContent($count . ' / 人', $value . ' %');
                 // 图表数据
                 $this->withChart([
                     [
-                        'name' => 'Sessions',
-                        'data' => [75, 125, 225, 175, 125, 75, 25],
+                        'name' => '得分',
+                        'data' => $datas,
                     ],
                 ]);
         }
@@ -93,10 +106,10 @@ class Sessions extends Bar
     {
         // 根据选项显示
         $label = strtolower(
-            $this->dropdown[request()->option] ?? 'last 7 days'
+            $this->dropdown[request()->option] ?? '考生通过考试'
         );
 
-        $minHeight = '183px';
+        $minHeight = '200px';
 
         return $this->content(
             <<<HTML
@@ -105,11 +118,10 @@ class Sessions extends Bar
         <h1 class="font-lg-2 mt-2 mb-0">{$title}</h1>
         <h5 class="font-medium-2" style="margin-top: 10px;">
             <span class="text-{$style}">{$value} </span>
-            <span>vs {$label}</span>
+            <span>{$label}</span>
         </h5>
     </div>
-
-    <a href="#" class="btn btn-primary shadow waves-effect waves-light">View Details <i class="feather icon-chevrons-right"></i></a>
+    <a href="/admin/KaoShi/EmsExamhistory" class="btn btn-primary shadow waves-effect waves-light">查看详情<i class="feather icon-chevrons-right"></i></a>
 </div>
 HTML
         );

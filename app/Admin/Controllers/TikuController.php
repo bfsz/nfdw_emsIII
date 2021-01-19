@@ -35,19 +35,16 @@ class TikuController extends Controller
 
     public function questype1()
     {
-        $data = EmsQuestype::pluck('type_name');
-        return $data;
+        return EmsQuestype::pluck('type_name');
     }
 
     public function declaration1()
     {
-        $data = EmsDeclaration::pluck('decl_name');
-        return $data;
+        return EmsDeclaration::pluck('decl_name');
     }
 
     public function major1()
     {
-        $data = EmsMajor::pluck('major_name');
-        return $data;
+        return EmsMajor::pluck('major_name');
     }
 }

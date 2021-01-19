@@ -21,13 +21,6 @@ use Dcat\Admin\Layout\Navbar;
  * Admin::js('/packages/prettydocs/js/main.js');
  *
  */
-Admin::navbar(function (Navbar $navbar) {
-
-    $navbar->right(view('navbar.navbar'));
-
-    $navbar->right(view('navbar.mean'));
-
-});
 admin_inject_section(Admin::SECTION['NAVBAR_USER_PANEL'], function () {
     return view('navbar.navbar-user-panel', ['user' => Admin::user()]);
 });

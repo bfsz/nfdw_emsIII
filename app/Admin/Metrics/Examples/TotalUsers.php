@@ -2,6 +2,7 @@
 
 namespace App\Admin\Metrics\Examples;
 
+use App\Models\KaoShi\AdminUser;
 use Dcat\Admin\Widgets\Metrics\Card;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -22,12 +23,14 @@ class TotalUsers extends Card
     {
         parent::init();
 
-        $this->title('Total Users');
+        $this->title('用户数量');
+        $this->height(193);
         $this->dropdown([
-            '7' => 'Last 7 Days',
-            '28' => 'Last 28 Days',
-            '30' => 'Last Month',
-            '365' => 'Last Year',
+            '1' => '系统管理员',
+            '2' => '题库管理员',
+            '3' => '考试管理员',
+            '4' => '申报管理员',
+            '5' => '考生'
         ]);
     }
 
@@ -40,23 +43,46 @@ class TotalUsers extends Card
      */
     public function handle(Request $request)
     {
-        switch ($request->get('option')) {
-            case '365':
-                $this->content(mt_rand(600, 1500));
-                $this->down(mt_rand(1, 30));
-                break;
-            case '30':
-                $this->content(mt_rand(170, 250));
-                $this->up(mt_rand(12, 50));
-                break;
-            case '28':
-                $this->content(mt_rand(155, 200));
-                $this->up(mt_rand(5, 50));
-                break;
-            case '7':
-            default:
-                $this->content(143);
-                $this->up(15);
+        try {
+            switch ($request->get('option')) {
+                case '1':
+                    $data = AdminUser::whereHasIn('adminRoles', function ($q) {
+                        $q->where('id', 1);
+                    })->count();
+                    $this->content(random_int($data, $data));
+                    break;
+                case '2':
+                    $data = AdminUser::whereHasIn('adminRoles', function ($q) {
+                        $q->where('id', 2);
+                    })->count();
+                    $this->content(random_int($data, $data));
+                    break;
+                case '3':
+                    $data = AdminUser::whereHasIn('adminRoles', function ($q) {
+                        $q->where('id', 3);
+                    })->count();
+                    $this->content(random_int($data, $data));
+                    break;
+                case '4':
+                    $data = AdminUser::whereHasIn('adminRoles', function ($q) {
+                        $q->where('id', 4);
+                    })->count();
+                    $this->content(random_int($data, $data));
+                    break;
+                case '5':
+                    $data = AdminUser::whereHasIn('adminRoles', function ($q) {
+                        $q->where('id', 5);
+                    })->count();
+                    $this->content(random_int($data, $data));
+                    break;
+                default:
+                    $data = AdminUser::whereHasIn('adminRoles', function ($q) {
+                        $q->where('id', 1);
+                    })->count();
+                    $this->content(random_int($data, $data));
+            }
+        } catch (\Exception $e) {
+            $this->content(random_int(0, 0));
         }
     }
 
@@ -109,10 +135,10 @@ class TotalUsers extends Card
 
         return <<<HTML
 <div class="d-flex justify-content-between align-items-center mt-1" style="margin-bottom: 2px">
-    <h2 class="ml-1 font-lg-1">{$content}</h2>
+    <h2 class="ml-1 font-lg-2"><i class="fa fa-users" style="color: rgba(65, 153, 222, 0.95)"></i>&nbsp;&nbsp;&nbsp;&nbsp;{$content}</h2>
 </div>
 <div class="ml-1 mt-1 font-weight-bold text-80">
-    {$this->renderFooter()}
+<br>
 </div>
 HTML;
     }

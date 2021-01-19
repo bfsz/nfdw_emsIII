@@ -29,8 +29,12 @@ class EmsFileController extends AdminController
                 $grid->disableDeleteButton();
                 $grid->disableBatchDelete();
                 $grid->disableQuickEditButton();
+                $grid->disableEditButton();
+                $grid->disableCreateButton();
+                $grid->disableFilterButton();
+            }else{
+                $grid->disableQuickEditButton(false);
             }
-            $grid->disableQuickEditButton(false);
             $grid->disableEditButton(true);
             $grid->setActionClass(Grid\Displayers\Actions::class);
             $grid->quickSearch(['file_name', 'file_desc'])->placeholder('搜索...');
@@ -56,6 +60,11 @@ class EmsFileController extends AdminController
             $show->field('file_path')->file();
             $show->field('created_at');
             $show->field('updated_at');
+            if (!(Admin::user()->isRole('administrator'))) {
+                // 禁用删除
+                $show->disableDeleteButton();
+                $show->disableEditButton();
+            }
         });
     }
 

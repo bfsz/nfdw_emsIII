@@ -1,0 +1,36 @@
+.indexlabel {
+    padding: 10px 20px;
+    margin: 10px 20px;
+}
+
+.index_h5 {
+    color: #ffffff;
+    font-size: large
+}
+
+.index_h1 {
+    color: #ffffff;
+    font-weight: bold
+}
+
+.index_a {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: medium;
+    float: right
+}
+
+.index_a:hover {
+    color: #ffffff;
+    padding: 0 10px 0 0;
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px 12px rgba(195, 195, 195, 0.15);
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}

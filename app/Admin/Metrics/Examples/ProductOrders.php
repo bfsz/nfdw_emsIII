@@ -14,8 +14,8 @@ class ProductOrders extends Round
     {
         parent::init();
 
-        $this->title('Product Orders');
-        $this->chartLabels(['Finished', 'Pending', 'Rejected']);
+        $this->title('统计');
+        $this->chartLabels(['测试1', '测试2', '测试3']);
         $this->dropdown([
             '7' => 'Last 7 Days',
             '28' => 'Last 28 Days',
