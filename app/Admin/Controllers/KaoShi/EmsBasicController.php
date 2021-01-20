@@ -29,6 +29,7 @@ class EmsBasicController extends AdminController
             $grid->model()->with(['emsSubject']);
             $user = Admin::user();
             $grid->id->sortable();
+            $grid->column('basic');
             $grid->column('emsSubject.subject', '申报名称')->limit(30);
             $grid->column('emsSubject.subject_dept', '申报单位')->limit(30);
             $grid->basic_staus->using([1 => '开启', 0 => '关闭'])

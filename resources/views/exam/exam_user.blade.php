@@ -69,27 +69,8 @@
                                                 <div class="row">
                                                     <div class="col-6"></div>
                                                     {{--遍历选项 判断题型--}}
-                                                    @switch($qus->questype_id)
+                                                    @switch(strlen($qus->que_answer))
                                                         @case(1) {{--单选题--}}
-                                                        <div class="col-6" id="que_answer">
-                                                            @for($i = 0;$i<$qus->que_selectnum;$i++)
-                                                                <label
-                                                                    for="0_answer_{{ $ques->id }}_option_{{$loop->iteration}}"
-                                                                    class="exam_style">{{ $exam_select[$i] }}
-                                                                    &nbsp;&nbsp;</label><input
-                                                                    type="radio"
-                                                                    class="radioOrCheck"
-                                                                    name="{{ $qus->id }}"
-                                                                    id="{{ $qus->id }}"
-                                                                    value="{{ $exam_select[$i] }}"/>&nbsp;&nbsp;&nbsp;
-                                                                &nbsp;&nbsp;&nbsp;
-                                                                &nbsp;
-                                                                &nbsp;
-                                                            @endfor
-                                                        </div>
-                                                        @break
-
-                                                        @case(3){{--判断题--}}
                                                         <div class="col-6" id="que_answer">
                                                             @for($i = 0;$i<$qus->que_selectnum;$i++)
                                                                 <label
@@ -149,28 +130,8 @@
                                                                     <div class="row">
                                                                         <div class="col-6"></div>
                                                                         {{--遍历选项 判断题型--}}
-                                                                        @switch($qus_son->questype_id)
+                                                                        @switch(strlen($qus_son->que_answer))
                                                                             @case(1) {{--单选题--}}
-                                                                            <div class="col-6" id="que_answer">
-                                                                                @for($i = 0;$i<$qus_son->que_selectnum;$i++)
-                                                                                    <label
-                                                                                        for="0_answer_{{ $qus_son->id }}_option_{{$loop->iteration}}"
-                                                                                        class="exam_style">{{ $exam_select[$i] }}
-                                                                                        &nbsp;&nbsp;</label><input
-                                                                                        type="radio"
-                                                                                        class="radioOrCheck"
-                                                                                        name="{{ $qus_son->id }}"
-                                                                                        id="{{$loop->iteration}}"
-                                                                                        value="{{ $exam_select[$i] }}"/>
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    &nbsp;
-                                                                                    &nbsp;
-                                                                                @endfor
-                                                                            </div>
-                                                                            @break
-
-                                                                            @case(3){{--判断题--}}
                                                                             <div class="col-6" id="que_answer">
                                                                                 @for($i = 0;$i<$qus_son->que_selectnum;$i++)
                                                                                     <label

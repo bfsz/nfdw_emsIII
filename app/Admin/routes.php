@@ -32,9 +32,14 @@ Route::group([
     $router->resource('KaoShi/EmsExamhistory', 'KaoShi\EmsExamhistoryController');
 
     $router->get('KaoSheng/examFun', 'KaoSheng\EmsKaoShiSubmit@examFun');
+
     $router->resource('KaoSheng/EmsBasic', 'KaoSheng\EmsBasicController');
     $router->resource('KaoSheng/EmsHistory', 'KaoSheng\EmsHistoryController');
     $router->resource('KaoSheng/EmsKaoShi/{id}/ExamPage', 'KaoSheng\EmsKaoShiByUser');
+
+    $router->resource('KaoSheng/EmsMockexam', 'KaoSheng\EmsMockexamController');
+    $router->resource('KaoSheng/EmsMock/{id}/MockPage', 'KaoSheng\EmsMockByUser');
+    $router->get('KaoSheng/mockFun', 'KaoSheng\EmsKaoShiSubmit@mockFun');
 
     //API
     Route::get('/api/questype', 'TikuController@questype');

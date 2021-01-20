@@ -93,7 +93,7 @@ class EmsQuestionController extends AdminController
                 if ($sure + $error == 0) {
                     return '-';
                 } else {
-                    $data = "<span class=\"badge badge-pill badge-danger\">" . ($sure / ($sure + $error) * 100) . ' %' . "</span>";
+                    $data = "<span class=\"badge badge-pill badge-danger\">" . ceil($sure / ($sure + $error) * 100) . ' %' . "</span>";
                     return $data;
                 }
             });
@@ -205,8 +205,8 @@ class EmsQuestionController extends AdminController
             $form->text('que_answer');
             $form->editor('que_describe');
             $form->switch('que_status')->default(1);
-            $form->select('que_level')->options([1 => '易', 2 => '中', 3 => '难']);
-            $form->number('que_sequence');
+//            $form->select('que_level')->options([1 => '易', 2 => '中', 3 => '难']);
+//            $form->number('que_sequence');
             $form->multipleSelect('declaration_id', '申报种类')->options(function () {
                 $categoryModel = EmsDeclaration::class;
                 return $categoryModel::all()->pluck('decl_name', 'id');

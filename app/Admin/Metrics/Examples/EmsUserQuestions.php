@@ -31,9 +31,9 @@ class EmsUserQuestions extends LazyRenderable
                     } else {
                         $data_a[$i]->status = '错误';
                     }
-                    $data_a[$i]->id = $i+1;
+                    $data_a[$i]->id = $i + 1;
                     unset($data_a[$i]->answer);
-                    $data_a[$i]->tm ='是';
+                    $data_a[$i]->tm = '否';
                     $data_a[$i]->que_head_index = '';
                     $data_a[$i]->que_index = $questions_yiban[0]->que_index;
                     $data_a[$i]->que_select = $questions_yiban[0]->que_select;
@@ -47,9 +47,9 @@ class EmsUserQuestions extends LazyRenderable
                     } else {
                         $data_a[$i]->status = '错误';
                     }
-                    $data_a[$i]->id = $i+1;
+                    $data_a[$i]->id = $i + 1;
                     unset($data_a[$i]->answer);
-                    $data_a[$i]->tm ='否';
+                    $data_a[$i]->tm = '是';
                     $data_a[$i]->que_head_index = $questions_timao_b[0]->que_index;
                     $data_a[$i]->que_index = $questions_timao_a[0]->que_index;
                     $data_a[$i]->que_select = $questions_timao_a[0]->que_select;

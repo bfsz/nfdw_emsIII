@@ -40,6 +40,11 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection name
      * @property Grid\Column|Collection avatar
      * @property Grid\Column|Collection remember_token
+     * @property Grid\Column|Collection ems_scorelist
+     * @property Grid\Column|Collection ems_ispass
+     * @property Grid\Column|Collection basic
+     * @property Grid\Column|Collection basic_desc
+     * @property Grid\Column|Collection ems_decidetime
      * @property Grid\Column|Collection detail
      * @property Grid\Column|Collection type
      * @property Grid\Column|Collection version
@@ -62,8 +67,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection role_id
      * @property Grid\Column|Collection value
      * @property Grid\Column|Collection create_by
-     * @property Grid\Column|Collection basic
-     * @property Grid\Column|Collection basic_desc
      * @property Grid\Column|Collection basic_exam_id
      * @property Grid\Column|Collection basic_subject_id
      * @property Grid\Column|Collection creat_by
@@ -71,13 +74,10 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection ems_allscore
      * @property Grid\Column|Collection ems_answerlist
      * @property Grid\Column|Collection ems_basic_id
-     * @property Grid\Column|Collection ems_decidetime
      * @property Grid\Column|Collection ems_endtime
      * @property Grid\Column|Collection ems_exam_id
-     * @property Grid\Column|Collection ems_ispass
      * @property Grid\Column|Collection ems_needresit
      * @property Grid\Column|Collection ems_score
-     * @property Grid\Column|Collection ems_scorelist
      * @property Grid\Column|Collection ems_starttime
      * @property Grid\Column|Collection ems_status
      * @property Grid\Column|Collection ems_subject_id
@@ -108,6 +108,17 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection file_desc
      * @property Grid\Column|Collection file_name
      * @property Grid\Column|Collection file_path
+     * @property Grid\Column|Collection mkems_analysis
+     * @property Grid\Column|Collection mkems_answer
+     * @property Grid\Column|Collection mkems_byid
+     * @property Grid\Column|Collection mkems_declaration_id
+     * @property Grid\Column|Collection mkems_enddate
+     * @property Grid\Column|Collection mkems_major_id
+     * @property Grid\Column|Collection mkems_name
+     * @property Grid\Column|Collection mkems_question
+     * @property Grid\Column|Collection mkems_startdate
+     * @property Grid\Column|Collection mkems_timespent
+     * @property Grid\Column|Collection mkems_url
      * @property Grid\Column|Collection declaration_id
      * @property Grid\Column|Collection major_id
      * @property Grid\Column|Collection que_answer
@@ -166,6 +177,11 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection name(string $label = null)
      * @method Grid\Column|Collection avatar(string $label = null)
      * @method Grid\Column|Collection remember_token(string $label = null)
+     * @method Grid\Column|Collection ems_scorelist(string $label = null)
+     * @method Grid\Column|Collection ems_ispass(string $label = null)
+     * @method Grid\Column|Collection basic(string $label = null)
+     * @method Grid\Column|Collection basic_desc(string $label = null)
+     * @method Grid\Column|Collection ems_decidetime(string $label = null)
      * @method Grid\Column|Collection detail(string $label = null)
      * @method Grid\Column|Collection type(string $label = null)
      * @method Grid\Column|Collection version(string $label = null)
@@ -188,8 +204,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection role_id(string $label = null)
      * @method Grid\Column|Collection value(string $label = null)
      * @method Grid\Column|Collection create_by(string $label = null)
-     * @method Grid\Column|Collection basic(string $label = null)
-     * @method Grid\Column|Collection basic_desc(string $label = null)
      * @method Grid\Column|Collection basic_exam_id(string $label = null)
      * @method Grid\Column|Collection basic_subject_id(string $label = null)
      * @method Grid\Column|Collection creat_by(string $label = null)
@@ -197,13 +211,10 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection ems_allscore(string $label = null)
      * @method Grid\Column|Collection ems_answerlist(string $label = null)
      * @method Grid\Column|Collection ems_basic_id(string $label = null)
-     * @method Grid\Column|Collection ems_decidetime(string $label = null)
      * @method Grid\Column|Collection ems_endtime(string $label = null)
      * @method Grid\Column|Collection ems_exam_id(string $label = null)
-     * @method Grid\Column|Collection ems_ispass(string $label = null)
      * @method Grid\Column|Collection ems_needresit(string $label = null)
      * @method Grid\Column|Collection ems_score(string $label = null)
-     * @method Grid\Column|Collection ems_scorelist(string $label = null)
      * @method Grid\Column|Collection ems_starttime(string $label = null)
      * @method Grid\Column|Collection ems_status(string $label = null)
      * @method Grid\Column|Collection ems_subject_id(string $label = null)
@@ -234,6 +245,17 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection file_desc(string $label = null)
      * @method Grid\Column|Collection file_name(string $label = null)
      * @method Grid\Column|Collection file_path(string $label = null)
+     * @method Grid\Column|Collection mkems_analysis(string $label = null)
+     * @method Grid\Column|Collection mkems_answer(string $label = null)
+     * @method Grid\Column|Collection mkems_byid(string $label = null)
+     * @method Grid\Column|Collection mkems_declaration_id(string $label = null)
+     * @method Grid\Column|Collection mkems_enddate(string $label = null)
+     * @method Grid\Column|Collection mkems_major_id(string $label = null)
+     * @method Grid\Column|Collection mkems_name(string $label = null)
+     * @method Grid\Column|Collection mkems_question(string $label = null)
+     * @method Grid\Column|Collection mkems_startdate(string $label = null)
+     * @method Grid\Column|Collection mkems_timespent(string $label = null)
+     * @method Grid\Column|Collection mkems_url(string $label = null)
      * @method Grid\Column|Collection declaration_id(string $label = null)
      * @method Grid\Column|Collection major_id(string $label = null)
      * @method Grid\Column|Collection que_answer(string $label = null)
@@ -297,6 +319,11 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection name
      * @property Show\Field|Collection avatar
      * @property Show\Field|Collection remember_token
+     * @property Show\Field|Collection ems_scorelist
+     * @property Show\Field|Collection ems_ispass
+     * @property Show\Field|Collection basic
+     * @property Show\Field|Collection basic_desc
+     * @property Show\Field|Collection ems_decidetime
      * @property Show\Field|Collection detail
      * @property Show\Field|Collection type
      * @property Show\Field|Collection version
@@ -319,8 +346,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection role_id
      * @property Show\Field|Collection value
      * @property Show\Field|Collection create_by
-     * @property Show\Field|Collection basic
-     * @property Show\Field|Collection basic_desc
      * @property Show\Field|Collection basic_exam_id
      * @property Show\Field|Collection basic_subject_id
      * @property Show\Field|Collection creat_by
@@ -328,13 +353,10 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection ems_allscore
      * @property Show\Field|Collection ems_answerlist
      * @property Show\Field|Collection ems_basic_id
-     * @property Show\Field|Collection ems_decidetime
      * @property Show\Field|Collection ems_endtime
      * @property Show\Field|Collection ems_exam_id
-     * @property Show\Field|Collection ems_ispass
      * @property Show\Field|Collection ems_needresit
      * @property Show\Field|Collection ems_score
-     * @property Show\Field|Collection ems_scorelist
      * @property Show\Field|Collection ems_starttime
      * @property Show\Field|Collection ems_status
      * @property Show\Field|Collection ems_subject_id
@@ -365,6 +387,17 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection file_desc
      * @property Show\Field|Collection file_name
      * @property Show\Field|Collection file_path
+     * @property Show\Field|Collection mkems_analysis
+     * @property Show\Field|Collection mkems_answer
+     * @property Show\Field|Collection mkems_byid
+     * @property Show\Field|Collection mkems_declaration_id
+     * @property Show\Field|Collection mkems_enddate
+     * @property Show\Field|Collection mkems_major_id
+     * @property Show\Field|Collection mkems_name
+     * @property Show\Field|Collection mkems_question
+     * @property Show\Field|Collection mkems_startdate
+     * @property Show\Field|Collection mkems_timespent
+     * @property Show\Field|Collection mkems_url
      * @property Show\Field|Collection declaration_id
      * @property Show\Field|Collection major_id
      * @property Show\Field|Collection que_answer
@@ -423,6 +456,11 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection name(string $label = null)
      * @method Show\Field|Collection avatar(string $label = null)
      * @method Show\Field|Collection remember_token(string $label = null)
+     * @method Show\Field|Collection ems_scorelist(string $label = null)
+     * @method Show\Field|Collection ems_ispass(string $label = null)
+     * @method Show\Field|Collection basic(string $label = null)
+     * @method Show\Field|Collection basic_desc(string $label = null)
+     * @method Show\Field|Collection ems_decidetime(string $label = null)
      * @method Show\Field|Collection detail(string $label = null)
      * @method Show\Field|Collection type(string $label = null)
      * @method Show\Field|Collection version(string $label = null)
@@ -445,8 +483,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection role_id(string $label = null)
      * @method Show\Field|Collection value(string $label = null)
      * @method Show\Field|Collection create_by(string $label = null)
-     * @method Show\Field|Collection basic(string $label = null)
-     * @method Show\Field|Collection basic_desc(string $label = null)
      * @method Show\Field|Collection basic_exam_id(string $label = null)
      * @method Show\Field|Collection basic_subject_id(string $label = null)
      * @method Show\Field|Collection creat_by(string $label = null)
@@ -454,13 +490,10 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection ems_allscore(string $label = null)
      * @method Show\Field|Collection ems_answerlist(string $label = null)
      * @method Show\Field|Collection ems_basic_id(string $label = null)
-     * @method Show\Field|Collection ems_decidetime(string $label = null)
      * @method Show\Field|Collection ems_endtime(string $label = null)
      * @method Show\Field|Collection ems_exam_id(string $label = null)
-     * @method Show\Field|Collection ems_ispass(string $label = null)
      * @method Show\Field|Collection ems_needresit(string $label = null)
      * @method Show\Field|Collection ems_score(string $label = null)
-     * @method Show\Field|Collection ems_scorelist(string $label = null)
      * @method Show\Field|Collection ems_starttime(string $label = null)
      * @method Show\Field|Collection ems_status(string $label = null)
      * @method Show\Field|Collection ems_subject_id(string $label = null)
@@ -491,6 +524,17 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection file_desc(string $label = null)
      * @method Show\Field|Collection file_name(string $label = null)
      * @method Show\Field|Collection file_path(string $label = null)
+     * @method Show\Field|Collection mkems_analysis(string $label = null)
+     * @method Show\Field|Collection mkems_answer(string $label = null)
+     * @method Show\Field|Collection mkems_byid(string $label = null)
+     * @method Show\Field|Collection mkems_declaration_id(string $label = null)
+     * @method Show\Field|Collection mkems_enddate(string $label = null)
+     * @method Show\Field|Collection mkems_major_id(string $label = null)
+     * @method Show\Field|Collection mkems_name(string $label = null)
+     * @method Show\Field|Collection mkems_question(string $label = null)
+     * @method Show\Field|Collection mkems_startdate(string $label = null)
+     * @method Show\Field|Collection mkems_timespent(string $label = null)
+     * @method Show\Field|Collection mkems_url(string $label = null)
      * @method Show\Field|Collection declaration_id(string $label = null)
      * @method Show\Field|Collection major_id(string $label = null)
      * @method Show\Field|Collection que_answer(string $label = null)

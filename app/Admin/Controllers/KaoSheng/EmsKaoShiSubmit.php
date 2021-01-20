@@ -4,6 +4,7 @@
 namespace App\Admin\Controllers\KaoSheng;
 
 use App\Http\Controllers\Controller;
+use App\Models\KaoSheng\EmsMockexam;
 use App\Models\KaoShi\EmsExamhistory;
 use App\Models\KaoShi\EmsExamsession;
 use App\Models\Tiku\EmsQuestion;
@@ -36,7 +37,7 @@ class EmsKaoShiSubmit extends Controller
                 ->update(['session_user_answer' => $return_data, 'session_history_time' => $history_time, 'session_token_status' => $token_status]);
 
             //更新成功后计算得分
-            if ($emsExxamSession == 1) {
+            if ($emsExxamSession) {
                 //获取该用户下 考生答案 统计得分
                 $data = EmsExamsession::where('session_user_id', $id)->where('session_basic_id', $basic_id)->get();
                 //考生答案
@@ -57,12 +58,10 @@ class EmsKaoShiSubmit extends Controller
                             for ($m = 0, $mMax = count($answers); $m < $mMax; $m++) {
                                 if ($yb_id == $answers[$m]->name && $answer == $answers[$m]->value) {//判断题目id且答案一致
                                     $all_score = $all_score + $score;
-//                                    DB::table('questions')->where('id',$yb_id)->increment('que_sure_count');
                                     EmsQuestion::where('id', $yb_id)->increment('que_sure_count');
                                     array_push($exams_arr, ['id' => $yb_id, 'tm' => 0, 'answer' => $answer, 'ksAnswer' => $answers[$m]->value, 'score' => $score, 'status' => 1]);
                                 }
                                 if ($yb_id == $answers[$m]->name && $answer != $answers[$m]->value) {//判断题目id一致且答案不一致
-//                                    DB::table('questions')->where('id',$yb_id)->increment('que_error_count');
                                     EmsQuestion::where('id', $yb_id)->increment('que_error_count');
                                     array_push($exams_arr, ['id' => $yb_id, 'tm' => 0, 'answer' => $answer, 'ksAnswer' => $answers[$m]->value, 'score' => 0, 'status' => 0]);
                                 }
@@ -76,12 +75,10 @@ class EmsKaoShiSubmit extends Controller
                                 for ($m = 0, $mMax = count($answers); $m < $mMax; $m++) {
                                     if ($tm_id == $answers[$m]->name && $tm_answer == $answers[$m]->value) {//判断题目id且答案一致
                                         $all_score += $score;
-//                                        DB::table('questions')->where('id',$tm_id)->increment('que_sure_count');
                                         EmsQuestion::where('id', $tm_id)->increment('que_sure_count');
                                         array_push($exams_arr, ['id' => $tm_id, 'tm' => 1, 'answer' => $tm_answer, 'ksAnswer' => $answers[$m]->value, 'score' => $score, 'status' => 1]);
                                     }
                                     if ($tm_id == $answers[$m]->name && $tm_answer != $answers[$m]->value) {//判断题目id一致且答案不一致
-//                                        DB::table('questions')->where('id',$tm_id)->increment('que_error_count');
                                         EmsQuestion::where('id', $tm_id)->increment('que_error_count');
                                         array_push($exams_arr, ['id' => $tm_id, 'tm' => 1, 'answer' => $tm_answer, 'ksAnswer' => $answers[$m]->value, 'score' => 0, 'status' => 0]);
                                     }
@@ -138,6 +135,89 @@ class EmsKaoShiSubmit extends Controller
             }
         } else {
             return 'error';
+        }
+    }
+
+    /*
+     * 模拟试卷提交后处理方法
+     * */
+    public function mockFun(Request $request)
+    {
+        //查询当前登录用户 与 id 是否一致，一致则执行下一步操作
+        $login_id = Admin::user()->id;
+        $user_id = $request->get('user_id');
+        $mock_id = $request->get('mock_id');
+        $mock_startdate = $request->get('mock_startdate');// 开始时间
+        $mock_startdate = date("Y-m-d H:i:s", $mock_startdate);// 开始时间
+        if ($login_id == $user_id) {
+            $return_data = $request->get('return_data'); // 试题id、答案
+            $mkems_enddate = date("Y-m-d H:i:s"); // 结束时间记录
+
+            //根据用户id,模拟id 更新数据
+            $EmsMockexam = EmsMockexam::where('mkems_byid', $user_id)
+                ->where('id', $mock_id)
+                ->update(['mkems_answer' => $return_data, 'mkems_startdate' => $mock_startdate, 'mkems_enddate' => $mkems_enddate, 'mkems_status' => 0]);
+
+            //更新成功后计算得分
+            if ($EmsMockexam) {
+                //获取该用户下 考生答案 统计
+                $data = EmsMockexam::where('mkems_byid', $user_id)
+                    ->where('id', $mock_id)->get();
+                // 试题
+                $mkems_question = json_decode($data[0]->mkems_question)[0];
+                // 答案
+                $mkems_answer = json_decode($data[0]->mkems_answer);
+                $count = $data[0]->mkems_question_count;
+                //遍历考生答案去 比对 试题 试题：题目id、题目答案、题目分值   考生答案：题目id、答案
+                $exams_arr = []; //得分列表
+                for ($i = 0, $iMax = $count; $i < $iMax; $i++) {
+                    if ($mkems_question[$i]->que_son_num == null) {//一般题
+                        $yb_id = $mkems_question[$i]->id;
+                        $que_index = $mkems_question[$i]->que_index;
+                        $que_select = $mkems_question[$i]->que_select;
+                        $answer = trim($mkems_question[$i]->que_answer);
+                        for ($m = 0, $mMax = count($mkems_answer); $m < $mMax; $m++) {
+                            if ($yb_id == $mkems_answer[$m]->name && $answer == $mkems_answer[$m]->value) {//判断题目id且答案一致
+                                EmsQuestion::where('id', $yb_id)->increment('que_sure_count');
+                                array_push($exams_arr, ['id' => $yb_id, 'tm' => 0, 'que_index' => $que_index, 'que_select' => $que_select, 'answer' => $answer, 'ksAnswer' => $mkems_answer[$m]->value, 'status' => 1]);
+                            }
+                            if ($yb_id == $mkems_answer[$m]->name && $answer != $mkems_answer[$m]->value) {//判断题目id一致且答案不一致
+                                EmsQuestion::where('id', $yb_id)->increment('que_error_count');
+                                array_push($exams_arr, ['id' => $yb_id, 'tm' => 0, 'que_index' => $que_index, 'que_select' => $que_select, 'answer' => $answer, 'ksAnswer' => $mkems_answer[$m]->value, 'status' => 0]);
+                            }
+                        }
+                    } else {//题冒题子题
+                        $tm_count = $mkems_question[$i]->que_son_num;
+                        $tm_data = $mkems_question[$i]->que_son_value;
+                        for ($k = 0; $k < $tm_count; $k++) {
+                            $tm_id = $tm_data[$k]->id;
+                            $que_index = $tm_data[$k]->que_index;
+                            $que_select = $tm_data[$k]->que_select;
+                            $tm_answer = trim($tm_data[$k]->que_answer);
+                            for ($m = 0, $mMax = count($mkems_answer); $m < $mMax; $m++) {
+                                if ($tm_id == $mkems_answer[$m]->name && $tm_answer == $mkems_answer[$m]->value) {//判断题目id且答案一致
+                                    EmsQuestion::where('id', $tm_id)->increment('que_sure_count');
+                                    array_push($exams_arr, ['id' => $tm_id, 'tm' => 1, 'que_index' => $que_index, 'que_select' => $que_select, 'answer' => $tm_answer, 'ksAnswer' => $mkems_answer[$m]->value, 'status' => 1]);
+                                }
+                                if ($tm_id == $mkems_answer[$m]->name && $tm_answer != $mkems_answer[$m]->value) {//判断题目id一致且答案不一致
+                                    EmsQuestion::where('id', $tm_id)->increment('que_error_count');
+                                    array_push($exams_arr, ['id' => $tm_id, 'tm' => 1, 'que_index' => $que_index, 'que_select' => $que_select, 'answer' => $tm_answer, 'ksAnswer' => $mkems_answer[$m]->value, 'status' => 0]);
+                                }
+                            }
+                        }
+                    }
+                    // 用时计算
+                    $mkems_timespent = strtotime($mkems_enddate) - strtotime($mock_startdate);
+                    $mkems_timespent = ceil($mkems_timespent / 60);
+
+                    //临时记录插入成绩表
+                    EmsMockexam::where('mkems_byid', $user_id)
+                        ->where('id', $mock_id)
+                        ->update(['mkems_analysis' => json_encode($exams_arr), 'mkems_timespent' => $mkems_timespent]);
+                }
+            } else {
+                return 'error';
+            }
         }
     }
 }
