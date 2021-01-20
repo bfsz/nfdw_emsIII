@@ -84,22 +84,26 @@ class EmsMockexamController extends AdminController
                 $mkems_enddate = $this->mkems_enddate;
                 $mkems_timespent = $this->mkems_timespent;
                 $mkems_question_count = $this->mkems_question_count;
-                $corrects = 0;
-                $wrongs = 0;
-                foreach (json_decode($mkems_analysis) as $item) {
-                    $item->answer === $item->ksAnswer ? $corrects++ : $wrongs++;
+                $mkems_status = $this->mkems_status;
+                if ($mkems_status === 0) {
+                    $corrects = 0;
+                    $wrongs = 0;
+                    foreach (json_decode($mkems_analysis) as $item) {
+                        $item->answer === $item->ksAnswer ? $corrects++ : $wrongs++;
+                    }
+                    $correct_rate = $corrects / ($corrects + $wrongs) * 100;
+                    return view('exam.mock_view', ['id' => $id,
+                        'mkems_name' => $mkems_name,
+                        'mkems_analysis' => json_decode($mkems_analysis),
+                        'mkems_startdate' => $mkems_startdate,
+                        'mkems_enddate' => $mkems_enddate,
+                        'corrects' => $corrects,
+                        'wrongs' => $wrongs,
+                        'correct_rate' => $correct_rate,
+                        'mkems_question_count' => $mkems_question_count,
+                        'mkems_timespent' => $mkems_timespent]);
                 }
-                $correct_rate = $corrects / ($corrects + $wrongs) * 100;
-                return view('exam.mock_view', ['id' => $id,
-                    'mkems_name' => $mkems_name,
-                    'mkems_analysis' => json_decode($mkems_analysis),
-                    'mkems_startdate' => $mkems_startdate,
-                    'mkems_enddate' => $mkems_enddate,
-                    'corrects' => $corrects,
-                    'wrongs' => $wrongs,
-                    'correct_rate' => $correct_rate,
-                    'mkems_question_count' => $mkems_question_count,
-                    'mkems_timespent' => $mkems_timespent]);
+                return $mkems_name;
             });
         });
     }
