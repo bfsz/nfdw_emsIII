@@ -157,7 +157,7 @@
                                     class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}"
                                     name="username"
                                     placeholder="{{ trans('admin.username') }}"
-                                    value="admin"
+                                    value=""
                                     required
                                     autofocus
                                 >
@@ -189,7 +189,7 @@
                                     name="password"
                                     placeholder="{{ trans('admin.password') }}"
                                     required
-                                    value="admin"
+                                    value=""
                                     autocomplete="current-password"
                                 >
 
