@@ -82,6 +82,7 @@ class EmsHistoryController extends AdminController
             $grid->disableQuickEditButton();
             $grid->disableViewButton();
             $grid->disableBatchActions();
+            $grid->quickSearch(['ems_Subject.subject','ems_Subject.subject_dept']);
             $grid->selector(function (Grid\Tools\Selector $selector) {
                 $selector->select('ems_ispass', '是否通过', [1 => '是', 0 => '否']);
             });

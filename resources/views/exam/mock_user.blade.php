@@ -260,7 +260,7 @@
             },
             success: function (data) {
                 // 提交成功后跳入成绩页面
-                window.location.href = "http://localhost:8025/admin/KaoSheng/EmsMockexam";
+                window.location.href = "{{$success_url}}";
             },
             error: function (request, status, error) {
                 Dcat.error('服务器出现未知错误', '提交失败，请联系管理员');

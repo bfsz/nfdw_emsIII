@@ -36,10 +36,23 @@ class EmsMockexamController extends AdminController
             $grid->column('mkems_url')->display(function ($value) {
                 $status = $this->mkems_status;
                 if ($status === 1) {
-                    return '<a href="' . $value . '" target="_blank">进入考试</a>';
+                    return '<a href="' . $value . '" target="_blank" class="text-custom">进入考试</a>';
                 }
-                return '已结束';
+                return '<span class="text-danger">已结束</span>';
 
+            });
+            $grid->column('mkems_question_count');
+            $grid->column('mkems_analysis', '正确率')->display(function ($data) {
+                if ($data) {
+                    $corrects = 0;
+                    $wrongs = 0;
+                    foreach (json_decode($data) as $item) {
+                        $item->answer === $item->ksAnswer ? $corrects++ : $wrongs++;
+                    }
+                    $correct_rate = ($corrects / ($corrects + $wrongs) * 100) . ' %';
+                    return "<span class=\"badge badge-danger\">$correct_rate</span>";
+                }
+                return '';
             });
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();

@@ -61,6 +61,8 @@ JS;
             shuffle($a_data);
             $exam_question[$i]->questions = $a_data;
         }
+        // 提交成功后跳转url
+        $success_url = admin_url('/KaoSheng/EmsHistory');
 
         $exam_select = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];//选项
 
@@ -76,6 +78,7 @@ JS;
             'exam_select' => $exam_select,
             'basic_id' => $basic_id,
             'ems_starttime' => $ems_starttime,
+            'success_url' => $success_url,
             'id' => $id])->render();
     }
 }

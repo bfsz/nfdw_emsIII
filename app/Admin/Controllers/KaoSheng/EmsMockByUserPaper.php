@@ -49,6 +49,7 @@ JS;
         $mock_question = json_decode($mockDatas[0]->mkems_question); //试题
         $mock_count = $mockDatas[0]->mkems_question_count;
         $mock_startdate = time(); //开始时间 时间戳
+        $success_url = admin_url('/KaoSheng/EmsMockexam');// 提交成功后跳转url
         $mock_select = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];//选项
         return view('exam.mock_user', ['name' => $mock_name,
             'mock_question' => $mock_question[0],
@@ -56,6 +57,7 @@ JS;
             'mock_id' => $mock_id,
             'mock_startdate' => $mock_startdate,
             'mock_count' => $mock_count,
+            'success_url' => $success_url,
             'mock_select' => $mock_select])->render();
     }
 }
