@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers\KaoShi;
 
 use App\Admin\Actions\Grid\GridAdminUsersData;
+use App\Exceptions\Tools\UserFileGender;
 use App\Models\KaoShi\AdminRoleUsers;
 use App\Models\KaoShi\AdminUser;
 use Dcat\Admin\Admin;
@@ -43,7 +44,7 @@ class AdminUserController extends AdminController
             $grid->enableDialogCreate();
             // 启用快捷编辑
             $grid->showQuickEditButton();
-
+            $grid->tools(new UserFileGender());
             $grid->export()->filename('考生数据');
             //导入
             $grid->tools(new GridAdminUsersData());

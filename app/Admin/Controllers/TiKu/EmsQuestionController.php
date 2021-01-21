@@ -4,6 +4,7 @@ namespace App\Admin\Controllers\TiKu;
 
 use App\Admin\Actions\Grid\GridQuestionData;
 use App\Admin\Repositories\TiKu\EmsQuestion;
+use App\Exceptions\Tools\QuestionFileGender;
 use App\Models\TiKu\EmsDeclaration;
 use App\Models\TiKu\EmsMajor;
 use App\Models\TiKu\EmsQuestype;
@@ -104,6 +105,7 @@ class EmsQuestionController extends AdminController
             $grid->export($titles)->filename('题库数据');
             //导入
             $grid->tools(new GridQuestionData());
+            $grid->tools(new QuestionFileGender());
             $grid->filter(function (Grid\Filter $filter) {
                 // 更改为 panel 布局
                 $filter->panel();
