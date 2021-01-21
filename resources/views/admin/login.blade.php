@@ -243,16 +243,14 @@
         <div class="content-front"></div>
         <div class="login-description">
             <p class="lead">
-                文明考风，诚信考试 学以载道，诚信为本
+                文明考风，诚信考试&nbsp;&nbsp;&nbsp;&nbsp;学以载道，诚信为本
             </p>
             <p>
-                优化考试环境，提高考试质量
+                优化考试环境&nbsp;&nbsp;提高考试质量
             </p>
         </div>
     </div>
 </div>
-
-
 <script>
     Dcat.ready(function () {
         // ajax表单提交
