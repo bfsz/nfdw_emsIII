@@ -111,6 +111,7 @@ class EmsQuestionController extends AdminController
                 // 更改为 panel 布局
                 $filter->panel();
                 // 注意切换为panel布局方式时需要重新调整表单字段的宽度
+                $filter->like('id')->width(3);
                 $filter->like('que_index')->width(3);
                 $filter->equal('questype.type_name', '题型')->select('/api/questype1')->width(3);
                 $filter->equal('que_head_satuts')->select([1 => '题冒题', 0 => '一般题'])->width(3);

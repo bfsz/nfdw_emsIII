@@ -8,7 +8,7 @@
                     <h5 class="index_h5"><span class="fa fa-leanpub"></span>&nbsp;&nbsp;试题
                     </h5>
                     <br class="border">
-                    <h1 class="index_h1" id="a_1"></h1>
+                    <h1 class="index_h1" id="a_11"></h1>
                     <a class="index_a" href="/admin/TiKu/EmsQuestion"
                        target="_self"><span class="fa fa-lea"></span>&nbsp;&nbsp;查看</a>
                 </div>
@@ -20,7 +20,7 @@
                     <h5 class="index_h5"><span class="fa fa-book"></span>&nbsp;&nbsp;题型
                     </h5>
                     <br class="border">
-                    <h1 class="index_h1" id="a_2"></h1>
+                    <h1 class="index_h1" id="a_22"></h1>
                     <a class="index_a" href="/admin/TiKu/EmsQuestype"
                        target="_self"><span class="fa fa-eye"></span>&nbsp;&nbsp;查看</a>
                 </div>
@@ -32,7 +32,7 @@
                     <h5 class="index_h5"><span class="fa  fa-suitcase"></span>&nbsp;&nbsp;专业
                     </h5>
                     <br class="border">
-                    <h1 class="index_h1" id="a_3"></h1>
+                    <h1 class="index_h1" id="a_33"></h1>
                     <a class="index_a"
                        href="/admin/TiKu/EmsMajor"
                        target="_self"><span class="fa fa-eye"></span>&nbsp;&nbsp;查看</a>
@@ -45,7 +45,7 @@
                     <h5 class="index_h5"><span class="fa fa-black-tie"></span>&nbsp;&nbsp;种类
                     </h5>
                     <br class="border">
-                    <h1 class="index_h1" id="a_4"></h1>
+                    <h1 class="index_h1" id="a_44"></h1>
                     <a class="index_a"
                        href="/admin/TiKu/EmsDeclaration"
                        target="_self"><span class="fa fa-eye"></span>&nbsp;&nbsp;查看</a>
@@ -57,14 +57,14 @@
 </body>
 <script type="text/javascript">
     var data = {!! $data !!};
-    var a_1 = document.getElementById("a_1");
-    var a_2 = document.getElementById("a_2");
-    var a_3 = document.getElementById("a_3")
-    var a_4 = document.getElementById("a_4");
-    a_1.innerHTML = data.ems_questions;
-    a_2.innerHTML = data.ems_questype;
-    a_3.innerHTML = data.ems_major;
-    a_4.innerHTML = data.ems_declaration;
+    var a_11 = document.getElementById("a_11");
+    var a_22 = document.getElementById("a_22");
+    var a_33 = document.getElementById("a_33")
+    var a_44 = document.getElementById("a_44");
+    a_11.innerHTML = data.ems_questions;
+    a_22.innerHTML = data.ems_questype;
+    a_33.innerHTML = data.ems_major;
+    a_44.innerHTML = data.ems_declaration;
 </script>
 
 
