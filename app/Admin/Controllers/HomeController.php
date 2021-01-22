@@ -19,7 +19,6 @@ class HomeController extends Controller
 {
     public function index(Content $content)
     {
-
         /**
          * 系统管理员
          */
@@ -62,6 +61,8 @@ class HomeController extends Controller
                     $row->column(12, function (Column $column) {
                         $column->row(new KaoShiHomeTab());
                     });
+                    $row->column(6, new TikuHomeTab());
+                    $row->column(6, new Examples\QuestionsHome());
                     $row->column(4, new Examples\ExamInfoHome());
                 });
         }

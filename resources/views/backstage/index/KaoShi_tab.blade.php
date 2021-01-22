@@ -5,7 +5,7 @@
         <div class="col-md-3">
             <div class="card bg-success text-white indexlabel">
                 <div class="card-body">
-                    <h5 class="index_h5"><span class="fa fa-user-plus"></span>&nbsp;&nbsp;试卷统计
+                    <h5 class="index_h5"><span class="fa fa-file-text"></span>&nbsp;&nbsp;试卷统计
                     </h5>
                     <br class="border">
                     <h1 class="index_h1" id="a_1"></h1>
@@ -17,7 +17,7 @@
         <div class="col-md-3">
             <div class="card bg-primary text-white indexlabel">
                 <div class="card-body index_card_body">
-                    <h5 class="index_h5"><span class="fa fa-user-circle"></span>&nbsp;&nbsp;申报统计
+                    <h5 class="index_h5"><span class="fa  fa-cubes"></span>&nbsp;&nbsp;申报统计
                     </h5>
                     <br class="border">
                     <h1 class="index_h1" id="a_2"></h1>
@@ -29,7 +29,7 @@
         <div class="col-md-3">
             <div class="card bg-danger text-white indexlabel">
                 <div class="card-body">
-                    <h5 class="index_h5"><span class="fa fa-file-text-o"></span>&nbsp;&nbsp;正在考试
+                    <h5 class="index_h5"><span class="fa fa fa-hourglass-1"></span>&nbsp;&nbsp;正在考试
                     </h5>
                     <br class="border">
                     <h1 class="index_h1" id="a_3"></h1>
@@ -42,7 +42,7 @@
         <div class="col-md-3">
             <div class="card bg-warning text-white indexlabel">
                 <div class="card-body">
-                    <h5 class="index_h5"><span class="fa fa-file-text-o"></span>&nbsp;&nbsp;成绩统计
+                    <h5 class="index_h5"><span class="fa  fa-line-chart"></span>&nbsp;&nbsp;成绩统计
                     </h5>
                     <br class="border">
                     <h1 class="index_h1" id="a_4"></h1>

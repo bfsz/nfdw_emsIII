@@ -89,7 +89,7 @@ class EmsExamController extends AdminController
         return Form::make(new \App\Models\KaoShi\EmsExam(), function (Form $form) {
             $user = Admin::user()->id;
             $form->display('id');
-            $form->text('exam_name');
+            $form->text('exam_name')->required();
             $form->table('exam_set', function ($table) {
                 $table->select('subject_set', '题型')->options(function () {
                     $roleModel = EmsQuestype::class;
@@ -99,20 +99,20 @@ class EmsExamController extends AdminController
                 $table->number('score', '每题分值');
             })->saving(function ($v) {
                 return json_encode($v);
-            });
-            $form->slider('exam_time')->options(['max' => 150, 'min' => 0, 'step' => 10, 'postfix' => '/分钟']);
+            })->required();
+            $form->number('exam_time')->default(60)->required();
             $form->text('exam_score')->disable()->help('总分根据题型设置数量自动计算');
             $form->text('exam_jigescore')->disable()->help('及格是占总分 60% 的分值');
 //            $form->switch('exam_status')->default(1);
             $form->select('exam_type')->options(function () {
                 $declarationModel = EmsDeclaration::class;
                 return $declarationModel::all()->pluck('decl_name', 'id');
-            });
+            })->required();
             $form->select('exam_major')
                 ->options(function () {
                     $roleModel = EmsMajor::class;
                     return $roleModel::all()->pluck('major_name', 'id');
-                });
+                })->required();
             $form->text('create_by')->default($user)->display(false);
             $form->text('last_by')->default($user)->display(false);
 
@@ -139,7 +139,7 @@ class EmsExamController extends AdminController
                     $qType_name = EmsQuestype::where('id', $qType_id)->pluck('type_name');
                     $qCount = (int)$item['count']; //题型数量
                     $qScore = (int)$item['score']; //每小题分值
-                    $questions_data = EmsQuestion::select(['id', 'questype_id', 'que_index', 'que_select', 'que_selectnum', 'que_answer', 'que_son_num', 'que_son_value'])
+                    $questions_data = EmsQuestion::select(['id', 'questype_id', 'que_index', 'que_select', 'que_selectnum', 'que_answer', 'que_head_satuts', 'que_son_num', 'que_son_value'])
                         ->where('questype_id', $qType_id)->where('major_id', 'like', $exam_major)->where('declaration_id', 'like', $exam_type)
                         ->where('que_head_id', null)->orderBy(DB::raw('RAND()'))
                         ->take($qCount)->get();
@@ -147,7 +147,7 @@ class EmsExamController extends AdminController
 
                     //判断是否事题冒题，如果无子题数量则不做操作
                     for ($i = 0, $iMax = count($questions_array); $i < $iMax; $i++) {
-                        if ($questions_array[$i]->que_son_num != null) {
+                        if ($questions_array[$i]->que_head_satuts == 1 && ($questions_array[$i]->que_son_num != null || $questions_array[$i]->que_son_num > 0)) {
                             $timao_id = $questions_array[$i]->id;
                             $timao_questions = EmsQuestion::select(['id', 'questype_id', 'que_index', 'que_select', 'que_selectnum', 'que_answer', 'que_son_num', 'que_head_id'])->where('que_head_id', $timao_id)->get();
                             $questions_array[$i]->que_son_value = $timao_questions;

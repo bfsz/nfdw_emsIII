@@ -19,8 +19,8 @@ class QuestionsHome extends RadialBar
 
         parent::init();
         $this->title('题目数量');
-        $this->height(400);
-        $this->chartHeight(300);
+        $this->height(200);
+        $this->chartHeight(170);
         $this->chartLabels('题型占比');
         $this->dropdown($this->question_tool());
     }

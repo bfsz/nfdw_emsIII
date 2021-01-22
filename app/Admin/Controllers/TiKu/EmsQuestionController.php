@@ -8,6 +8,7 @@ use App\Exceptions\Tools\QuestionFileGender;
 use App\Models\TiKu\EmsDeclaration;
 use App\Models\TiKu\EmsMajor;
 use App\Models\TiKu\EmsQuestype;
+use App\Models\TiKu\EmsQuestion as EmsQuestions;
 use App\Renderable\TikuTable;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
@@ -185,8 +186,8 @@ class EmsQuestionController extends AdminController
                     $form->selectTable('que_head_id', '题冒题目')
                         ->title('弹窗标题')
                         ->dialogWidth('50%') // 弹窗宽度，默认 800px
-                        ->from(TikuTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                        ->model(EmsQuestion::class, 'id', 'que_index'); // 设置编辑数据显示
+                        ->from(TikuTable::make()) // 设置渲染类实例，并传递自定义参数
+                        ->model(EmsQuestions::class, 'id', 'que_index'); // 设置编辑数据显示
                     $form->number('que_son_num');
                 }
             })->when(0, function (Form $form) {
