@@ -41,6 +41,10 @@ class HomeController extends Controller
                 ->header('主页')
                 ->description('数据统计')
                 ->body(function (Row $row) {
+                    $row->column('12', "<a style=\"cursor: pointer;color: orangered;font-size: large\" onclick=\"window.open('/uploads/files/考试题库管理员操作手册.docx')\" target=\"_blank\">
+                                                            <i class=\"ficon feather icon-book\"></i> 操作手册下载
+                                                        </a>");
+                    $row->column(12, '&nbsp;');
                     $row->column(6, function (Column $column) {
                         $column->row(new TikuHomeTab());
                         $column->row(new Examples\QuestionsHome());
@@ -58,6 +62,10 @@ class HomeController extends Controller
                 ->header('主页')
                 ->description('数据统计')
                 ->body(function (Row $row) {
+                    $row->column('12', "<a style=\"cursor: pointer;color: orangered;font-size: large\" onclick=\"window.open('/uploads/files/考试题库管理员操作手册.docx')\" target=\"_blank\">
+                                                            <i class=\"ficon feather icon-book\"></i> 操作手册下载
+                                                        </a>");
+                    $row->column(12, '&nbsp;');
                     $row->column(12, function (Column $column) {
                         $column->row(new KaoShiHomeTab());
                     });
@@ -74,6 +82,10 @@ class HomeController extends Controller
                 ->header('主页')
                 ->description('数据统计')
                 ->body(function (Row $row) {
+                    $row->column('12', "<a style=\"cursor: pointer;color: orangered;font-size: large\" onclick=\"window.open('/uploads/files/申报管理员操作手册.docx')\" target=\"_blank\">
+                                                            <i class=\"ficon feather icon-book\"></i> 操作手册下载
+                                                        </a>");
+                    $row->column(12, '&nbsp;');
                     $row->column(12, function (Column $column) {
                         $column->row(new ShenBaoHomeTab());
                     });
@@ -87,6 +99,10 @@ class HomeController extends Controller
                 ->header('主页')
                 ->description('数据统计')
                 ->body(function (Row $row) {
+                    $row->column('12', "<a style=\"cursor: pointer;color: orangered;font-size: large\" onclick=\"window.open('/uploads/files/考生操作手册.docx')\" target=\"_blank\">
+                                                            <i class=\"ficon feather icon-book\"></i> 操作手册下载
+                                                        </a>");
+                    $row->column(6, '&nbsp;');
                     $row->column(8, function (Column $column) {
                         $column->row(new KaoShenHomeTab());
                     });
