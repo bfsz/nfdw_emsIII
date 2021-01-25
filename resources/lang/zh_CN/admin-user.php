@@ -1,8 +1,8 @@
 <?php
 return [
     'labels' => [
-        'AdminUser' => '考试信息',
-        'admin-user' => '考试信息',
+        'AdminUser' => '考生信息',
+        'admin-user' => '考生信息',
     ],
     'fields' => [
         'username' => '用户名',
